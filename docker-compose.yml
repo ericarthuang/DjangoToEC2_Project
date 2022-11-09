@@ -7,19 +7,19 @@ services:
     env_file:
       - .env
     volumes:
-      - static_vol:/app/blog_app/staticfiles
-      - media_vol:/app/blog_app/media
+      - static_vol:/app/staticfiles
+      - media_vol:/app/media
     ports:
-      - 8000:8000
+      - "8000:8000"
   
   nginx:
     build: 
       context: ./nginx
     volumes:
-      - static_vol:/app/blog_app/staticfiles
-      - media_vol:/app/blog_app/media
+      - static_vol:/app/staticfiles
+      - media_vol:/app/media
     ports:
-      - 80:80
+      - "80:80"
     depends_on:
       - django_app
 

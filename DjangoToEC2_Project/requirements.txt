@@ -3,5 +3,5 @@ pillow
 gunicorn
 waitress
 psycopg2-binary
-env_config
+python-decouple
 python-dotenv

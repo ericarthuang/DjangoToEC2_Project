@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from decouple import config
 
 #from dotenv import load_dotenv
 #load_dotenv()
@@ -23,11 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-p#2#a85iy6an#ojv9#3#4$h)di@%y%h!fibr+oo3d-tnu5g+tu"
+#SECRET_KEY = "django-insecure-p#2#a85iy6an#ojv9#3#4$h)di@%y%h!fibr+oo3d-tnu5g+tu"
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+#DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -85,28 +89,18 @@ WSGI_APPLICATION = 'djangotoec2_main.wsgi.application'
 #    }
 #}
 
-DATABASES = {   
-        'default': { 
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'pgdatabase_django',
-            'USER': 'postgres', 
-            'PASSWORD': 'Lawrence19981123',
-            'HOST': 'database-1.cxjpeubksuve.ap-northeast-1.rds.amazonaws.com', 
-            'PORT': 5432,
-        }
-}
-'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': 5432,
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASS'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
-'''
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

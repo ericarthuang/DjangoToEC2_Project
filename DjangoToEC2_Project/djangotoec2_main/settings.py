@@ -24,14 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = "django-insecure-p#2#a85iy6an#ojv9#3#4$h)di@%y%h!fibr+oo3d-tnu5g+tu"
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = "django-insecure-p#2#a85iy6an#ojv9#3#4$h)di@%y%h!fibr+oo3d-tnu5g+tu"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-#DEBUG = True
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -92,6 +90,18 @@ WSGI_APPLICATION = 'djangotoec2_main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pgdatabase_django',
+        'USER': 'postgres',
+        'PASSWORD': 'Lawrence19981123',
+        'HOST': 'database-2.cxjpeubksuve.ap-northeast-1.rds.amazonaws.com',
+        'PORT': 5433,
+    }
+}
+
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASS'),
@@ -99,6 +109,8 @@ DATABASES = {
         'PORT': config('DB_PORT'),
     }
 }
+'''
+
 
 
 # Password validation
@@ -135,10 +147,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'blog_app', 'staticfiles')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
